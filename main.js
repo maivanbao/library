@@ -437,6 +437,20 @@ function isNumericGroup(e) {
 }
 
 
+function onPaste(e) {
+	let input = e.clipboardData.getData('text/plain');
+	if (!isNumber(input)) {
+		e.preventDefault();
+	} else if (input < 0) {
+		e.preventDefault();
+	}
+	// Trim white spaces from paste
+	setTimeout(function () {
+		let textbox = $(e.target);
+		textbox.val(textbox.val().split(' ').join(''));
+	}, 0);
+},
+
 /**
  * This function validates if the param is a positive number (including 0)
  * 
